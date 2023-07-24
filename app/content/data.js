@@ -47,14 +47,7 @@ export const data = [
       "date": "2020-01-06",
       "type": "image/png",
     },
-    {
-      "name": "Great Views",
-      "url": "/images/Untitled.jpg",
-      "link": "https://zionnairelanding.netlify.app/",
-      "description": "Beautiful place in Nigeria",
-      "date": "2020-01-07",
-      "type": "image/jpg",
-    },
+  
     {
       "name": "Planner App",
       "url": "/images/planner-app.png",

@@ -5,12 +5,13 @@ import MySideBar from './components/myside';
 import StickyNavbar from './components/sticky';
 import HeroSection from './components/MyHeroSection';
 import Projects from './components/project';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  
+  const router = useRouter();
   return (
     <>
-    <MySideBar />
+    <MySideBar router = {router}/>
     <main className={styles.main}>
  <div className={styles.background}>
         <HeroSection />

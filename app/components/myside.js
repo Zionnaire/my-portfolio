@@ -8,17 +8,16 @@ import { FcContacts } from 'react-icons/fc';
 import { FaBlog } from 'react-icons/fa';
 import Link from 'next/link';
 
-export default function Home() {
+export default function MySideBar() {
   const [isActive, setIsActive] = useState(false);
+  const [activeItem, setActiveItem] = useState('Home');
 
   const handleMenuToggle = () => {
     setIsActive(!isActive);
   };
 
-  const handleLinkClick = (e) => {
-    const menuItems = Array.from(document.querySelectorAll('.Menulist li'));
-    menuItems.forEach((item) => item.classList.remove('active'));
-    e.target.parentNode.classList.add('active');
+  const handleLinkClick = (text) => {
+    setActiveItem(text);
   };
 
   return (
@@ -28,64 +27,81 @@ export default function Home() {
         <ul>
           <div>
             <li style={{ '--bg': '#383F51' }} className="logo">
-              <a href="#">
-              <div className="icon">
+              <div className='a'>
+                <div className="icon">
                   <div className="image">
                     <img src="./zionnaire.jpeg" alt="" />
                   </div>
                 </div>
                 <div className="text">Zionnaire Concepts</div>
-              </a>
+              </div>
             </li>
           </div>
           <div className="Menulist">
-            <li style={{ '--bg': '#FF5F5F' }} className="active">
-              <a href="#" onClick={handleLinkClick}>
-                <div className="icon"><AiFillHome /></div>
-                <div className="text">Home</div>
-              </a>
-            </li>
-            <li style={{ '--bg': '#FFC371' }}>
-              <Link href="/profile" onClick={handleLinkClick}>
-                <div className="icon"><BsFillPersonFill /></div>
-                <div className="text">Profile</div>
+            <li style={{ '--bg': '#FF5F5F' }} className={activeItem === 'Home' ? 'active' : ''}>
+              <Link href="/" onClick={() => handleLinkClick('Home')}>
+                <div className='a'>
+                  <div className="icon"><AiFillHome /></div>
+                  <div className="text">Home</div>
+                </div>
               </Link>
             </li>
-            <li style={{ '--bg': '#70C37F' }}>
-              <a href="#" onClick={handleLinkClick}>
-                <div className="icon"><SiSkillshare /></div>
-                <div className="text">My Stacks</div>
-              </a>
+            <li style={{ '--bg': '#FFC371' }} className={activeItem === 'Profile' ? 'active' : ''}>
+              <Link href="/" onClick={() => handleLinkClick('Profile')}>
+                <div className='a'>
+                  <div className="icon"><BsFillPersonFill /></div>
+                  <div className="text">Profile</div>
+                </div>
+              </Link>
             </li>
-            <li style={{ '--bg': '#5199E4' }}>
-              <a href="#" onClick={handleLinkClick}>
-                <div className="icon"><MdWork /></div>
-                <div className="text">Projects</div>
-              </a>
+
+            <li style={{ '--bg': '#5199E4' }} className={activeItem === 'Projects' ? 'active' : ''}>
+              <Link href="/project" onClick={() => handleLinkClick('Projects')}>
+                <div className='a'>
+                  <div className="icon"><MdWork /></div>
+                  <div className="text">Projects</div>
+                </div>
+              </Link>
             </li>
-            <li style={{ '--bg': '#FF6BA2' }}>
-              <a href="#" onClick={handleLinkClick}>
-                <div className="icon"><FcContacts /></div>
-                <div className="text">Hire Me</div>
-              </a>
+
+            <li style={{ '--bg': '#70C37F' }} className={activeItem === 'My Stacks' ? 'active' : ''}>
+              <Link href="#" onClick={() => handleLinkClick('My Stacks')}>
+                <div className='a'>
+                  <div className="icon"><SiSkillshare /></div>
+                  <div className="text">My Stacks</div>
+                </div>
+              </Link>
             </li>
-            <li style={{ '--bg': '#FF6BA2' }}>
-              <a href="#" onClick={handleLinkClick}>
-                <div className="icon"><FaBlog /></div>
-                <div className="text">Blogs</div>
-              </a>
+          
+            <li style={{ '--bg': '#FF6BA2' }} className={activeItem === 'Hire Me' ? 'active' : ''}>
+              <Link href="/contact" onClick={() => handleLinkClick('Hire Me')}>
+                <div className='a'>
+                  <div className="icon"><FcContacts /></div>
+                  <div className="text">Hire Me</div>
+                </div>
+              </Link>
+            </li>
+            <li style={{ '--bg': '#FF6BA2' }} className={activeItem === 'Blogs' ? 'active' : ''}>
+              <Link href="/" onClick={() => handleLinkClick('Blogs')}>
+                <div className='a'>
+                  <div className="icon"><FaBlog /></div>
+                  <div className="text">Blogs</div>
+                </div>
+              </Link>
             </li>
           </div>
           <div className="bottom">
             <li style={{ '--bg': '#383F51' }}>
-              <a href="#">
-                <div className="icon">
-                  <div className="image">
-                    <img src="./myPic.jpeg" alt="" />
+              <Link href="/contact">
+                <div className='a'>
+                  <div className="icon">
+                    <div className="image">
+                      <img src="./myPic.jpeg" alt="" />
+                    </div>
                   </div>
+                  <div className="text">Zionnaire</div>
                 </div>
-                <div className="text">Zionnaire</div>
-              </a>
+              </Link>
             </li>
           </div>
         </ul>
@@ -95,50 +111,87 @@ export default function Home() {
 }
 
 
-// function SidebarMenu({ isMenuActive, handleMenuToggle }) {
-  
+
+// export default function MySideBar() {
+//   const [isActive, setIsActive] = useState(false);
+//   const router = useRouter();
+
+//   const handleMenuToggle = () => {
+//     setIsActive(!isActive);
+//   };
+
+//   const handleLinkClick = (href) => {
+//     setIsActive(false);
+//     router.push(href);
+//   };
+
 //   return (
-//     <><div class={styles.menuToggle} onClick={handleMenuToggle}></div>
-//     <div className={styles.sidebar  + (isMenuActive ? ' ' + styles.active : '')}>
-//       <ul>
-//         <div>
-//           <li style={{ '--bg': '#333' }} className="logo" >
-//             <a href="#">
-//               <div className={styles.icon}>
-//                 <AiFillApple />
+//     <>
+//       <div className={`menuToggle ${isActive ? 'active' : ''}`} onClick={handleMenuToggle}></div>
+//       <div className={`sidebar ${isActive ? 'active' : ''}`}>
+//         <ul>
+//           <div>
+//             <li style={{ '--bg': '#383F51' }} className="logo">
+//               <Link href="#">
+//                 <div className="icon">
+//                   <div className="image">
+//                     <img src="./zionnaire.jpeg" alt="" />
+//                   </div>
+//                 </div>
+//                 <div className="text">Zionnaire Concepts</div>
+//               </Link>
+//             </li>
+//           </div>
+//           <div className="Menulist">
+//             <li style={{ '--bg': '#FF5F5F' }} className={router.pathname === '/' ? 'active' : ''}>
+//               <div className="icon">
+//                 <AiFillHome />
 //               </div>
-//               <div className={styles.text}>Website logo</div>
-//             </a>
-//           </li>
-//         </div>
-//         <div className={styles.Menulist}>
-//           {
-//             nav.map( ({title, bg, Icon}) => (
-//               <SidebarNav title={title} bg={bg} Icon={Icon} />
-//             )  )
-//           }
-//         </div>
-//         <div className={styles.bottom}>
-//           <li style={{ '--bg': '#333' }}>
-//             <a href="#">
-//               <div className={styles.icon}>
-//                 <div className={styles.image}>
-//                   <img src="/myPic.jpeg" alt="my-pic" />
+//               <div className="text" onClick={() => handleLinkClick('/')}>Home</div>
+//             </li>
+//             <li style={{ '--bg': '#FFC371' }} className={router.pathname === '/profile' ? 'active' : ''}>
+//               <div className="icon">
+//                 <BsFillPersonFill />
+//               </div>
+//               <div className="text" onClick={() => handleLinkClick('/profile')}>Profile</div>
+//             </li>
+//             <li style={{ '--bg': '#70C37F' }} className={router.pathname === '/mystacks' ? 'active' : ''}>
+//               <div className="icon">
+//                 <SiSkillshare />
+//               </div>
+//               <div className="text" onClick={() => handleLinkClick('/mystacks')}>My Stacks</div>
+//             </li>
+//             <li style={{ '--bg': '#5199E4' }} className={router.pathname === '/project' ? 'active' : ''}>
+//               <div className="icon">
+//                 <MdWork />
+//               </div>
+//               <div className="text" onClick={() => handleLinkClick('/project')}>Projects</div>
+//             </li>
+//             <li style={{ '--bg': '#FF6BA2' }} className={router.pathname === '/contact' ? 'active' : ''}>
+//               <div className="icon">
+//                 <FcContacts />
+//               </div>
+//               <div className="text" onClick={() => handleLinkClick('/contact')}>Hire Me</div>
+//             </li>
+//             <li style={{ '--bg': '#FF6BA2' }} className={router.pathname === '/blog' ? 'active' : ''}>
+//               <div className="icon">
+//                 <FaBlog />
+//               </div>
+//               <div className="text" onClick={() => handleLinkClick('/blog')}>Blogs</div>
+//             </li>
+//           </div>
+//           <div className="bottom">
+//             <li style={{ '--bg': '#383F51' }}>
+//               <div className="icon">
+//                 <div className="image">
+//                   <img src="./myPic.jpeg" alt="" />
 //                 </div>
 //               </div>
-//               <div className={styles.text}>Zionnaire Concepts</div>
-//             </a>
-//           </li>
-//           <li style={{ '--bg': '#333' }}>
-//             <a href="#">
-//               <div className={styles.icon}>
-//                 <BiLogOutCircle />
-//               </div>
-//               <div className={styles.text}>Log Out</div>
-//             </a>
-//           </li>
-//         </div>
-//       </ul>
-//     </div></>
+//               <div className="text" onClick={() => handleLinkClick('/profile')}>Zionnaire</div>
+//             </li>
+//           </div>
+//         </ul>
+//       </div>
+//     </>
 //   );
 // }
