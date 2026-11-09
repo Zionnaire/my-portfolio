@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/*
+  Palette: adire-indigo navy for ink and dark panels, one amber "on-air" signal,
+  and an orange accent for links and highlights. All text and accent pairs meet
+  WCAG AA in both themes.
+*/
+:root {
+  color-scheme: light;
+  --bg: #eef1f7;
+  --surface: #ffffff;
+  --ink: #1b2350;
+  --muted: #4a5378;
+  --line: #d3d9e8;
+  --accent: #c2410c;
+  --panel: #1b2350;
+  --panel-ink: #e9edf5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f1433;
+    --surface: #131a3d;
+    --ink: #e9edf5;
+    --muted: #a9b1cf;
+    --line: #2a3363;
+    --accent: #ff9a3c;
+    --panel: #1b2350;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1433;
+  --surface: #131a3d;
+  --ink: #e9edf5;
+  --muted: #a9b1cf;
+  --line: #2a3363;
+  --accent: #ff9a3c;
+  --panel: #1b2350;
+  --panel-ink: #e9edf5;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-panel: var(--panel);
+  --color-panel-ink: var(--panel-ink);
+  --color-signal: #e8a317;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+@utility wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 40rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility measure {
+  max-width: 40rem;
+}
+
+html {
+  scroll-padding-top: 5rem;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Inside navy panels the focus ring switches to the amber signal colour. */
+.bg-panel :focus-visible {
+  outline-color: #e8a317;
+}
+
+/* Inline text links: accent colour plus an underline, so colour is never the only cue */
+.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.link:hover {
+  text-decoration-thickness: 2px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

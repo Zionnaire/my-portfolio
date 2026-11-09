@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ademola Abraham — Full-Stack & Mobile Engineer, AI Integration</title>
+<meta name="description" content="Full-stack and mobile engineer in Abuja building health tech for Nigeria, with AI integrated where it helps.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,62..125,400&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens =====
+   Adire indigo (Nigerian resist-dyed cloth) for ink and surfaces,
+   one amber "on-air" signal colour for the dial and nothing else loud. */
+:root {
+  color-scheme: light;
+  --bg: #E9EDF5;
+  --surface: #FFFFFF;
+  --ink: #1B2350;
+  --ink-soft: #4A5378;
+  --line: rgba(27, 35, 80, .14);
+  --indigo: #2F4BA8;
+  --signal: #E8A317;
+  --signal-ink: #1B2350;
+  --dial-bg: #1B2350;
+  --dial-ink: #E9EDF5;
+  --dial-tick: rgba(233, 237, 245, .35);
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --max: 72rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0F1433; --surface: #171E45; --ink: #E9EDF5; --ink-soft: #A9B1CF;
+    --line: rgba(233, 237, 245, .14); --indigo: #8FA4F0;
+    --dial-bg: #070A1F; --dial-ink: #E9EDF5;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0F1433; --surface: #171E45; --ink: #E9EDF5; --ink-soft: #A9B1CF;
+  --line: rgba(233, 237, 245, .14); --indigo: #8FA4F0;
+  --dial-bg: #070A1F; --dial-ink: #E9EDF5;
+}
+
+/* ===== Base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 5rem); }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-size: 1.0625rem; line-height: 1.6;
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--indigo); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ===== Header ===== */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30;
+  background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 4rem; gap: 1rem; }
+.logo { font-weight: 700; font-variation-settings: "wdth" 115; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+.nav { display: flex; align-items: center; gap: clamp(.75rem, 3vw, 2rem); }
+.nav a { color: var(--ink); text-decoration: none; font-size: .9375rem; }
+.nav a:hover { color: var(--indigo); }
+.theme-btn {
+  background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px;
+  width: 2.25rem; height: 2.25rem; cursor: pointer; font-size: 1rem; line-height: 1;
+}
+@media (max-width: 34rem) { .nav .hide-sm { display: none; } }
+
+/* ===== Hero ===== */
+.hero { padding: clamp(3rem, 9vw, 7rem) 0 clamp(2.5rem, 6vw, 4rem); }
+.hero h1 {
+  margin: 0; max-width: 15ch;
+  font-size: clamp(2.6rem, 7.5vw, 5.75rem); line-height: .98; letter-spacing: -.035em;
+  font-weight: 760; font-variation-settings: "wdth" 120;
+}
+.hero-sub { margin: 1.75rem 0 0; max-width: 38rem; color: var(--ink-soft); font-size: clamp(1.0625rem, 1.6vw, 1.25rem); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.4rem;
+  border-radius: 999px; font: inherit; font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer;
+  border: 1.5px solid var(--ink); transition: background-color .15s, color .15s;
+}
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: var(--indigo); border-color: var(--indigo); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { background: var(--surface); }
+
+/* ===== The dial (the one loud thing) ===== */
+.tuner {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  background: var(--dial-bg); color: var(--dial-ink);
+  border-radius: 1.75rem; padding: clamp(1.25rem, 3vw, 2.25rem);
+  display: grid; gap: 1.75rem;
+}
+.tuner-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.tuner-title { margin: 0; font-size: 1rem; font-weight: 500; color: color-mix(in srgb, var(--dial-ink) 75%, transparent); }
+.on-air { display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; color: color-mix(in srgb, var(--dial-ink) 75%, transparent); }
+.on-air i { width: .55rem; height: .55rem; border-radius: 50%; background: var(--signal); box-shadow: 0 0 12px var(--signal); }
+
+.freq-readout {
+  font-variation-settings: "wdth" 62; font-weight: 700; font-variant-numeric: tabular-nums;
+  font-size: clamp(3.5rem, 12vw, 8rem); line-height: .9; letter-spacing: -.02em; color: var(--signal);
+}
+.freq-readout small { font-size: .28em; font-weight: 500; letter-spacing: .02em; margin-left: .35em; color: var(--dial-ink); font-variation-settings: "wdth" 100; }
+
+.dial {
+  position: relative; height: 5.5rem; cursor: grab; touch-action: none; user-select: none;
+  border-top: 1px solid var(--dial-tick); border-bottom: 1px solid var(--dial-tick);
+}
+.dial:active { cursor: grabbing; }
+.dial:focus-visible { outline-offset: 6px; }
+.ticks { position: absolute; inset: 0; }
+.tick { position: absolute; bottom: 0; width: 1px; height: 18%; background: var(--dial-tick); }
+.tick.major { height: 38%; background: color-mix(in srgb, var(--dial-ink) 55%, transparent); }
+.tick-label { position: absolute; top: .4rem; transform: translateX(-50%); font-size: .75rem; font-variant-numeric: tabular-nums; color: color-mix(in srgb, var(--dial-ink) 55%, transparent); }
+.station-dot { position: absolute; bottom: 42%; width: .6rem; height: .6rem; margin-left: -.3rem; border-radius: 50%; background: var(--dial-ink); opacity: .55; }
+.station-dot.home { background: var(--signal); opacity: .8; }
+.needle {
+  position: absolute; top: -.6rem; bottom: -.6rem; width: 3px; margin-left: -1.5px;
+  background: var(--signal); border-radius: 2px; box-shadow: 0 0 14px color-mix(in srgb, var(--signal) 70%, transparent);
+  transition: left .45s cubic-bezier(.2,.8,.2,1);
+  pointer-events: none;
+}
+.dial.dragging .needle { transition: none; }
+
+.station-panel { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(1.25rem, 4vw, 3rem); align-items: start; min-height: 11rem; }
+.station-name { margin: 0 0 .5rem; font-size: clamp(1.5rem, 3.4vw, 2.25rem); line-height: 1.1; font-weight: 700; font-variation-settings: "wdth" 112; letter-spacing: -.02em; }
+.station-desc { margin: 0; max-width: 34rem; color: color-mix(in srgb, var(--dial-ink) 82%, transparent); }
+.station-meta { display: grid; gap: 1rem; }
+.station-stack { margin: 0; color: color-mix(in srgb, var(--dial-ink) 70%, transparent); font-size: .9375rem; }
+.station-links { display: flex; flex-wrap: wrap; gap: .5rem; }
+.station-links a {
+  color: var(--dial-ink); text-decoration: none; font-size: .9375rem; font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--dial-ink) 35%, transparent); border-radius: 999px; padding: .45rem 1rem;
+}
+.station-links a:hover { border-color: var(--signal); color: var(--signal); }
+.presets { display: flex; flex-wrap: wrap; gap: .5rem; }
+.preset {
+  font: inherit; font-size: .875rem; font-variant-numeric: tabular-nums; cursor: pointer;
+  background: transparent; color: color-mix(in srgb, var(--dial-ink) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--dial-ink) 22%, transparent); border-radius: 999px; padding: .4rem .85rem;
+}
+.preset[aria-pressed="true"] { background: var(--signal); color: var(--signal-ink); border-color: var(--signal); font-weight: 600; }
+.station-panel.fade { animation: tuneIn .35s ease; }
+@keyframes tuneIn { from { opacity: .15; filter: blur(2px); } to { opacity: 1; filter: none; } }
+@media (max-width: 44rem) { .station-panel { grid-template-columns: 1fr; } .tick-label.minor-lbl { display: none; } }
+
+/* ===== Sections ===== */
+section.block { padding: clamp(3.5rem, 9vw, 6.5rem) 0; border-top: 1px solid var(--line); }
+.block h2 { margin: 0 0 2.5rem; font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: -.025em; font-weight: 720; font-variation-settings: "wdth" 115; }
+
+/* Work: varied hierarchy, featured items get room, the rest are a compact list */
+.featured { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.feature:nth-child(even) .shot { order: 2; }
+.shot {
+  aspect-ratio: 16 / 11; border-radius: 1.25rem; background: var(--surface);
+  border: 1px solid var(--line); overflow: hidden; display: grid; place-items: center;
+  color: var(--ink-soft); font-size: .875rem; text-align: center; padding: 1rem;
+}
+.shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.feature h3 { margin: 0 0 .25rem; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1; letter-spacing: -.02em; font-weight: 700; font-variation-settings: "wdth" 110; }
+.feature .kind { margin: 0 0 1rem; color: var(--ink-soft); font-size: .9375rem; }
+.feature p { margin: 0 0 1rem; max-width: 36rem; }
+.feature ul { margin: 0 0 1.25rem; padding-left: 1.1rem; max-width: 36rem; }
+.feature li { margin-bottom: .35rem; }
+.stack-line { color: var(--ink-soft); font-size: .9375rem; margin: 0 0 1rem; }
+.links { display: flex; flex-wrap: wrap; gap: 1.25rem; font-weight: 600; }
+@media (max-width: 48rem) { .feature { grid-template-columns: 1fr; } .feature:nth-child(even) .shot { order: 0; } }
+
+.more { margin-top: clamp(3rem, 7vw, 5rem); }
+.more h3 { margin: 0 0 1rem; font-size: 1.25rem; font-weight: 650; }
+.more-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.more-list li { display: grid; grid-template-columns: minmax(9rem, 14rem) 1fr auto; gap: 1rem 2rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.more-list strong { font-weight: 650; }
+.more-list span { color: var(--ink-soft); }
+@media (max-width: 40rem) { .more-list li { grid-template-columns: 1fr; gap: .25rem; } }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); }
+.about-grid p { margin: 0 0 1.1rem; max-width: 38rem; }
+.path { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+.path li { position: relative; padding: 0 0 1.5rem 1.5rem; }
+.path li::before { content: ""; position: absolute; left: -7px; top: .45rem; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--ink-soft); }
+.path li:last-child::before { background: var(--signal); border-color: var(--signal); }
+.path strong { display: block; font-weight: 650; }
+.path span { color: var(--ink-soft); font-size: .9375rem; }
+.skills { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.5rem 2.5rem; }
+.skills h3 { margin: 0 0 .4rem; font-size: 1rem; font-weight: 650; }
+.skills p { margin: 0; color: var(--ink-soft); font-size: .9375rem; }
+@media (max-width: 48rem) { .about-grid { grid-template-columns: 1fr; } }
+
+/* Contact */
+.contact-mail {
+  display: inline-block; margin: 0 0 2rem; color: var(--ink); text-decoration: none; word-break: break-word;
+  font-size: clamp(1.6rem, 5.5vw, 3.75rem); line-height: 1.05; font-weight: 720; letter-spacing: -.03em; font-variation-settings: "wdth" 112;
+  border-bottom: 3px solid var(--signal);
+}
+.contact-mail:hover { color: var(--indigo); }
+.contact p { max-width: 36rem; color: var(--ink-soft); margin: 0 0 1.5rem; }
+.socials { display: flex; flex-wrap: wrap; gap: 1.5rem; font-weight: 600; }
+
+footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: .875rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .needle { transition: none; }
+  .station-panel.fade { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top">Ademola Abraham</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about" class="hide-sm">About</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>I build web and mobile products, and the AI that runs inside them.</h1>
+      <p class="hero-sub">Full-stack and mobile engineer in Abuja, Nigeria. Most of my work is health tech: reproductive health, vaccine misinformation surveillance, and the platforms that health organisations run on.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">See my work</a>
+        <a class="btn btn-ghost" href="mailto:zionnaire2018@gmail.com">Email me</a>
+      </div>
+
+      <div class="tuner" aria-labelledby="tunerTitle">
+        <div class="tuner-top">
+          <p class="tuner-title" id="tunerTitle">Tune through my work. Drag the dial, use arrow keys, or pick a station.</p>
+          <span class="on-air"><i aria-hidden="true"></i>On air from Abuja</span>
+        </div>
+
+        <div class="freq-readout" aria-hidden="true"><span id="freq">88.7</span><small>FM</small></div>
+
+        <div class="dial" id="dial" tabindex="0" role="slider"
+             aria-label="Project frequency" aria-valuemin="88" aria-valuemax="108" aria-valuenow="88.7" aria-valuetext="">
+          <div class="ticks" id="ticks"></div>
+          <div class="needle" id="needle"></div>
+        </div>
+
+        <div class="station-panel" id="panel" aria-live="polite">
+          <div>
+            <h3 class="station-name" id="sName"></h3>
+            <p class="station-desc" id="sDesc"></p>
+          </div>
+          <div class="station-meta">
+            <p class="station-stack" id="sStack"></p>
+            <div class="station-links" id="sLinks"></div>
+          </div>
+        </div>
+
+        <div class="presets" id="presets" role="group" aria-label="Stations"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Work ===== -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+
+      <div class="featured">
+        <article class="feature">
+          <div class="shot"><!-- Replace with <img src="images/planamwell.png" alt="PlanAmWell app screens"> -->Add a PlanAmWell screenshot</div>
+          <div>
+            <h3>PlanAmWell</h3>
+            <p class="kind">Reproductive health platform · mobile, web and admin</p>
+            <p>A health companion for Nigerians: ask questions in your own language, see a doctor by video, and get the products you need.</p>
+            <ul>
+              <li>“Ask AmWell” assistant in English, Pidgin, Yoruba, Hausa and Igbo, with voice input and lab-result explanations</li>
+              <li>Appointments and WebRTC video calls that ring even when the app is closed</li>
+              <li>Health records behind a biometric check, medication reminders, and a store with Paystack and Flutterwave</li>
+            </ul>
+            <p class="stack-line">Expo / React Native, Next.js, Express, MongoDB, Groq, Firebase</p>
+            <div class="links"><a href="https://planamwell.com">Visit site</a><a href="https://github.com/Zionnaire/PlanAmWell">Code</a></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="shot"><!-- <img src="images/immuniwatch.png" alt="ImmuniWatch dashboard"> -->Add an ImmuniWatch screenshot</div>
+          <div>
+            <h3>ImmuniWatch Nigeria</h3>
+            <p class="kind">Vaccine misinformation surveillance</p>
+            <p>Helps health teams spot vaccine misinformation early and answer it with facts, across five Nigerian languages.</p>
+            <ul>
+              <li>Classifies posts from five social platforms with an ML service, and sends uncertain ones to analysts</li>
+              <li>Generates counter-narratives grounded in a verified knowledge base (RAG)</li>
+              <li>Tracks model drift by language and alerts on regional surges</li>
+            </ul>
+            <p class="stack-line">React, TypeScript, Express, MongoDB, Kafka, Groq</p>
+            <div class="links"><a href="https://immuniwatch-frontend.onrender.com/">Visit site</a><a href="https://github.com/Zionnaire/ImmuniWatch">Code</a></div>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="shot"><!-- <img src="images/efims.png" alt="EFIMS case workspace"> -->Add an EFIMS screenshot</div>
+          <div>
+            <h3>EFIMS</h3>
+            <p class="kind">Fraud and financial crime case management for banks</p>
+            <p>Takes a fraud alert from first signal through investigation, recovery and regulatory reporting, with strict controls on who can see what.</p>
+            <ul>
+              <li>Tenant isolation enforced in PostgreSQL itself with row-level security</li>
+              <li>Tamper-evident audit trail and compartments for AML, whistleblowing and HR cases</li>
+              <li>No account freeze or write-off happens without a human approval</li>
+            </ul>
+            <p class="stack-line">NestJS, Next.js, PostgreSQL, Prisma, Socket.IO</p>
+            <div class="links"><a href="https://github.com/Zionnaire/FMS">Code</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="more">
+        <h3>More projects</h3>
+        <ul class="more-list">
+          <li><strong>AI in Health Summit 2026</strong><span>Registration, payments, admin CMS and a passwordless delegate portal for AHFID’s summit</span><a href="https://aiinhealthsummit.org">Visit</a></li>
+          <li><strong>Pact</strong><span>Relationship app for couples with sealed entries, consent-based reveals and AI tone-check</span><a href="https://github.com/Zionnaire/Pact">Code</a></li>
+          <li><strong>Aura Forex</strong><span>Trading intelligence with a rule-based signal engine, backtesting and human-approved execution</span><a href="https://github.com/Zionnaire/FX_backend">Code</a></li>
+          <li><strong>TheArk</strong><span>Church community app with group chat and voice and video calls</span><a href="https://github.com/Zionnaire/TheArk">Code</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <div class="about-grid">
+        <div>
+          <p>I’m Fowosere Ademola Abraham. I build full-stack web and mobile products, and I integrate AI into them: retrieval-augmented generation, NLP classification, and LLM chat assistants that work in Nigerian languages.</p>
+          <p>I work with the Africa Hub for Innovation &amp; Development (AHFID) and run my own consultancy, Zionnaire Concepts. I care about software that holds up in real conditions: patchy networks, people who prefer voice to typing, and data that has to stay private.</p>
+          <p>Before software, I was on radio. That’s where I learned to explain complicated things simply, which turns out to be most of the job.</p>
+        </div>
+        <ol class="path" aria-label="Career path">
+          <li><strong>Radio broadcasting</strong><span>Radio TNT 102.5 FM</span></li>
+          <li><strong>Civil and mechanical engineering consulting</strong><span>Mosco Engineering &amp; Associates</span></li>
+          <li><strong>Full-stack, mobile and AI engineering</strong><span>AHFID and Zionnaire Concepts</span></li>
+        </ol>
+      </div>
+
+      <div class="skills">
+        <div><h3>Web and mobile</h3><p>React, Next.js, React Native, Expo and EAS, TypeScript, Tailwind</p></div>
+        <div><h3>Backend</h3><p>Node.js, Express, NestJS, MongoDB, PostgreSQL, Prisma, Socket.IO, Kafka</p></div>
+        <div><h3>AI integration</h3><p>RAG pipelines, NLP classification, LLM assistants, speech-to-text, Groq</p></div>
+        <div><h3>Payments and delivery</h3><p>Paystack, Flutterwave, WebRTC, Docker, GitHub Actions, Render, Vercel</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <h2>Work with me</h2>
+      <p>I’m open to contract, collaboration and full-time roles, especially in health tech and AI-integrated products.</p>
+      <a class="contact-mail" href="mailto:zionnaire2018@gmail.com">zionnaire2018@gmail.com</a>
+      <div class="socials">
+        <a href="https://github.com/Zionnaire">GitHub</a>
+        <a href="https://www.linkedin.com/in/ademola-abraham-488557120/">LinkedIn</a>
+        <a href="https://twitter.com/zionnaire1">X</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© <span id="year"></span> Fowosere Ademola Abraham · Zionnaire Concepts</div></footer>
+
+<script>
+/* ===== Edit your stations here =====
+   freq: any value 88–108. Keep at least ~2.0 apart so the dots don't crowd. */
+const STATIONS = [
+  { freq: 88.7, name: "PlanAmWell", desc: "Reproductive health platform with a multilingual AI assistant, video consultations, health records and a health store.", stack: "Expo / React Native · Next.js · Express · MongoDB · Groq",
+    links: [["Visit site", "https://planamwell.com"], ["Code", "https://github.com/Zionnaire/PlanAmWell"]] },
+  { freq: 91.3, name: "ImmuniWatch Nigeria", desc: "Spots vaccine misinformation across five Nigerian languages and helps health teams respond with facts.", stack: "React · Express · MongoDB · Kafka · Groq",
+    links: [["Visit site", "https://immuniwatch-frontend.onrender.com/"], ["Code", "https://github.com/Zionnaire/ImmuniWatch"]] },
+  { freq: 94.1, name: "EFIMS", desc: "Fraud and financial crime case management for banks, with database-level tenant isolation and human-approved actions.", stack: "NestJS · Next.js · PostgreSQL · Prisma",
+    links: [["Code", "https://github.com/Zionnaire/FMS"]] },
+  { freq: 97.5, name: "AI in Health Summit 2026", desc: "AHFID’s summit platform: registration, Paystack payments, admin CMS and a passwordless delegate portal.", stack: "React · Express · MongoDB · Docker · CI",
+    links: [["Visit site", "https://aiinhealthsummit.org"], ["Code", "https://github.com/Zionnaire/aiinhealthsummit"]] },
+  { freq: 100.3, name: "Pact", desc: "A private space for couples to say what’s hard to say, revealed only when both partners agree.", stack: "Expo / React Native · Express · Groq · Paystack",
+    links: [["Code", "https://github.com/Zionnaire/Pact"]] },
+  { freq: 102.5, home: true, name: "Where it started", desc: "Before I wrote code, I was on air at Radio TNT 102.5 FM. Broadcasting taught me to make complicated things clear, and I still build that way.", stack: "Radio TNT 102.5 FM",
+    links: [["Read more about me", "#about"]] },
+  { freq: 104.9, name: "Aura Forex", desc: "Trading intelligence: a rule-based signal engine, RAG knowledge base, backtesting and human-approved MT5 execution.", stack: "Next.js · Express · WebSockets · Groq",
+    links: [["Code", "https://github.com/Zionnaire/FX_backend"]] },
+  { freq: 107.1, name: "TheArk", desc: "A church community app with feeds, real-time group chat, and voice and video calls.", stack: "Node.js · Express · MongoDB · Socket.IO",
+    links: [["Code", "https://github.com/Zionnaire/TheArk"]] },
+];
+
+const MIN = 88, MAX = 108;
+const dial = document.getElementById("dial"), needle = document.getElementById("needle"), ticks = document.getElementById("ticks");
+const freqEl = document.getElementById("freq"), panel = document.getElementById("panel"), presets = document.getElementById("presets");
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pct = f => ((f - MIN) / (MAX - MIN)) * 100;
+
+/* Build ticks every 0.5 MHz, labels every 2 MHz */
+for (let f = MIN; f <= MAX + 0.001; f += 0.5) {
+  const t = document.createElement("div");
+  const major = Math.abs(f % 2) < 0.01;
+  t.className = "tick" + (major ? " major" : "");
+  t.style.left = pct(f) + "%";
+  ticks.appendChild(t);
+  if (major) {
+    const l = document.createElement("span");
+    l.className = "tick-label" + (f % 4 !== 0 ? " minor-lbl" : "");
+    l.style.left = pct(f) + "%"; l.textContent = f;
+    ticks.appendChild(l);
+  }
+}
+STATIONS.forEach((s, i) => {
+  const d = document.createElement("div");
+  d.className = "station-dot" + (s.home ? " home" : "");
+  d.style.left = pct(s.freq) + "%";
+  ticks.appendChild(d);
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "preset"; b.textContent = s.freq.toFixed(1) + "  " + s.name;
+  b.addEventListener("click", () => tuneTo(i));
+  presets.appendChild(b);
+});
+
+let current = -1;
+function setNeedle(f) { needle.style.left = pct(f) + "%"; freqEl.textContent = f.toFixed(1); }
+function tuneTo(i) {
+  const s = STATIONS[i];
+  setNeedle(s.freq);
+  if (i === current) return;
+  current = i;
+  document.getElementById("sName").textContent = s.name;
+  document.getElementById("sDesc").textContent = s.desc;
+  document.getElementById("sStack").textContent = s.stack;
+  const links = document.getElementById("sLinks"); links.innerHTML = "";
+  s.links.forEach(([label, href]) => { const a = document.createElement("a"); a.href = href; a.textContent = label; links.appendChild(a); });
+  dial.setAttribute("aria-valuenow", s.freq);
+  dial.setAttribute("aria-valuetext", s.freq.toFixed(1) + " FM, " + s.name);
+  [...presets.children].forEach((b, j) => b.setAttribute("aria-pressed", j === i));
+  if (!reduced) { panel.classList.remove("fade"); void panel.offsetWidth; panel.classList.add("fade"); }
+}
+const nearest = f => STATIONS.reduce((best, s, i) => Math.abs(s.freq - f) < Math.abs(STATIONS[best].freq - f) ? i : best, 0);
+
+/* Drag: needle follows the pointer, snaps to the nearest station on release */
+function freqFromEvent(e) {
+  const r = dial.getBoundingClientRect();
+  return Math.min(MAX, Math.max(MIN, MIN + ((e.clientX - r.left) / r.width) * (MAX - MIN)));
+}
+dial.addEventListener("pointerdown", e => { dial.setPointerCapture(e.pointerId); dial.classList.add("dragging"); setNeedle(freqFromEvent(e)); });
+dial.addEventListener("pointermove", e => {
+  if (!dial.classList.contains("dragging")) return;
+  const f = freqFromEvent(e); setNeedle(f);
+  const n = nearest(f); if (Math.abs(STATIONS[n].freq - f) < 0.6) tuneTo(n), setNeedle(f);
+});
+dial.addEventListener("pointerup", e => { dial.classList.remove("dragging"); tuneTo(nearest(freqFromEvent(e))); });
+dial.addEventListener("keydown", e => {
+  const k = e.key;
+  if (k === "ArrowRight" || k === "ArrowUp") { e.preventDefault(); tuneTo(Math.min(STATIONS.length - 1, current + 1)); }
+  if (k === "ArrowLeft" || k === "ArrowDown") { e.preventDefault(); tuneTo(Math.max(0, current - 1)); }
+  if (k === "Home") { e.preventDefault(); tuneTo(0); }
+  if (k === "End") { e.preventDefault(); tuneTo(STATIONS.length - 1); }
+});
+
+/* The one orchestrated moment: on load, the needle sweeps in from 88 to the first station */
+setNeedle(MIN);
+requestAnimationFrame(() => setTimeout(() => tuneTo(0), reduced ? 0 : 250));
+
+/* Theme toggle (respects system setting until the visitor chooses) */
+const root = document.documentElement;
+try { const saved = localStorage.getItem("theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
+document.getElementById("themeBtn").addEventListener("click", () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+});
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
